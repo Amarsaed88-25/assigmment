@@ -1,0 +1,223 @@
+// 1. Convert "123" to number and add 7
+let str = "123";
+let num = Number(str);
+let result = num + 7;
+console.log(result); // 130
+
+// 2. Check if the given variable is falsy and return "Invalid"
+function checkValue(value) {
+  if (value) {
+    return "Valid";
+  } else {
+    return "Invalid";
+  }
+}
+console.log(checkValue(0));        // Invalid
+console.log(checkValue("hi"));     // Valid
+
+// 3. Print numbers from 1 to 10, skip even numbers using continue
+for (let i = 1; i <= 10; i++) {
+  if (i % 2 === 0) {
+    continue;
+  }
+  console.log(i); // 1 3 5 7 9
+}
+
+// 4. Create an array of numbers and return only even numbers using filter
+let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+let evenNumbers = numbers.filter(num => num % 2 === 0);
+console.log(evenNumbers); // [2, 4, 6, 8]
+
+// 5. Merge two arrays using spread operator
+let arr1 = [1, 2, 3];
+let arr2 = [4, 5, 6];
+let merged = [...arr1, ...arr2];
+console.log(merged); // [1, 2, 3, 4, 5, 6]
+
+// 6. Return day of the week using switch (1=Sunday ... 7=Saturday)
+function getDay(dayNumber) {
+  switch (dayNumber) {
+    case 1: return "Sunday";
+    case 2: return "Monday";
+    case 3: return "Tuesday";
+    case 4: return "Wednesday";
+    case 5: return "Thursday";
+    case 6: return "Friday";
+    case 7: return "Saturday";
+    default: return "Invalid day";
+  }
+}
+console.log(getDay(2)); // Monday
+
+// 7. Return lengths of strings using map
+let words = ["a", "ab", "abc"];
+let lengths = words.map(word => word.length);
+console.log(lengths); // [1, 2, 3]
+
+// 8. Check if a number is divisible by 3 and 5
+function isDivisibleBy3and5(num) {
+  if (num % 3 === 0 && num % 5 === 0) {
+    return "Divisible by both";
+  } else {
+    return "Not divisible";
+  }
+}
+console.log(isDivisibleBy3and5(15)); // Divisible by both
+
+// 9. Return the square of a number
+function square(number) {
+  return number * number;
+}
+console.log(square(5));  // 25
+console.log(square(25)); // 625
+
+// 10. Destructure object and return formatted string
+function formatPerson(person) {
+  let { name, age } = person;
+  return `${name} is ${age} years old`;
+}
+let person = { name: "John", age: 25 };
+console.log(formatPerson(person)); // John is 25 years old
+
+// 11. Function that accepts multiple parameters and returns their sum
+function sumAll(...nums) {
+  let total = 0;
+  for (let n of nums) {
+    total += n;
+  }
+  return total;
+}
+console.log(sumAll(1, 2, 3, 4, 5)); // 15
+
+// 12. Return a promise that resolves after 3 seconds with "Success"
+function successPromise() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("Success");
+    }, 3000);
+  });
+}
+successPromise().then(msg => console.log(msg)); // Success (after 3 sec)
+
+// 13. Find the largest number in an array
+function findLargest(arr) {
+  let max = arr[0];
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+  return max;
+}
+console.log(findLargest([1, 3, 7, 2, 4])); // 7
+
+// 14. Return only the keys of an object
+function getKeys(obj) {
+  return Object.keys(obj);
+}
+let user = { name: "John", age: 30 };
+console.log(getKeys(user)); // ["name", "age"]
+
+// 15. Split a string into an array of words
+function extractWords(sentence) {
+  return sentence.split(" ");
+}
+let sentence = "The quick brown fox";
+console.log(extractWords(sentence)); 
+
+
+
+
+// B. Part 2: Essay Questions (2.5 Grade)**
+
+// 1. What is the difference between forEach and for...of? When would you use each? (0.5 Grade)**  
+// - forEach: is a method that belongs to arrays. It runs a function on every item but you can't use break or continue inside it, and it doesn't return anything (returns undefined).
+
+//   Example: `arr.forEach(item => console.log(item));`  
+// - for...of: is a loop like for but cleaner. You can use break, continue, and await inside it, and it works on any iterable (arrays, strings, maps). 
+
+//   Example: `for (let item of arr) { if (item === 3) break; console.log(item); }`  
+
+// I use forEach when I just want to do something with each item (no stopping).  
+// I use for...of when I need to break, continue, or use await.
+
+// 2. What is hoisting and what is the Temporal Dead Zone (TDZ)? Explain with examples. (0.5 Grade) 
+// Hoisting = JavaScript moves declarations (var, function) to the top of their scope before code runs.  
+
+// Example with var:  
+// js
+// console.log(x);  undefined (not error!)
+// var x = 5;
+//
+// It's like JS does this behind the scenes:
+// js
+// var x;
+// console.log(x);  undefined
+// x = 5;
+//-------------------------------------------------------------------------
+
+// Temporal Dead Zone (TDZ) = When you use let or const, the variable is hoisted but you cannot access it before the line where it's declared → ReferenceError.  
+
+// Example:
+// js
+// console.log(a);  ReferenceError: Cannot access 'a' before initialization
+// let a = 10;
+// ```
+
+// 3. What Number("456")    456     → manual
+// Boolean(0)       false   → manual
+// ```
+
+// Type Coercion = JavaScript does it automatically(behind the scenes)  
+// Examples:
+// js
+// "5" + 1          "51"    → string (coercion)
+// "5" - 1          4       → number (coercion)
+// !!"hello"        true    → boolean (coercion)
+// ```
+
+// Coercion can cause bugs (like `"5" + 1 = "51"`), so we prefer to convert manually when needed.
+
+// Done Sir!  
+//  the main differences between == and ===? (0.5 Grade)
+// - == (loose equality) → checks value after converting types (coercion)  
+//   Example: `"5" == 5` → true  
+// - === (strict equality) → checks value AND type, no conversion  
+//   Example: `"5" === 5` → false  
+
+// Always use === unless you have a very good reason. It's safer and clearer.
+
+// 4. Explain how try-catch works and why it is important in async operations. (0.5 Grade) 
+// try-catch is used to catch errors so the program doesn't crash.  
+
+// js
+// try {
+//   let result = JSON.parse("bad json");
+// } catch (error) {
+//   console.log("Something went wrong:", error.message);
+// }
+// ```
+
+// In async operations (like fetch, promises), it's super important because network can fail, server can be down, etc.
+
+// With async/await we use it like this:
+// js
+// async function getData() {
+//   try {
+//     let response = await fetch("https://api.example.com/data");
+//     let data = await response.json();
+//     console.log(data);
+//   } catch (error) {
+//     console.log("Failed to fetch data:", error.message);
+//   }
+// }
+// ```
+
+// Without try-catch, one error crashes the whole app. With it → user sees a nice message instead of a broken page.
+
+// 5. What’s the difference between type conversion and coercion? Provide examples of each. (0.5 Grade)**  
+
+// Type Conversion = we do it manually (on purpose)  
+// Examples:
+// js
+// String(123)      "123"   → manual
